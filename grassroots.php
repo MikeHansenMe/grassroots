@@ -1,12 +1,14 @@
 <?php
 
-/**
- * Plugin Name: Grassroots Donator
- * Plugin URI: http://grassroots.org
- * Description: A quick way for individuals to contribute to your non-profit organization.
- * Author: Garth Mortensen
- * Author URI: http://gmortensen-ohwp.com
- */
+/*
+Plugin Name: Grassroots Donator
+Plugin URI: http://grassroots.org
+Description: A quick way for individuals to contribute to your non-profit organization.
+Author: Garth Mortensen
+Author URI: http://gmortensen-ohwp.com
+GitHub Plugin URI: https://github.com/voldemortenson/grassroots
+GitHub Branch: master
+*/
 
 if ( ! defined( 'WPINC' ) ) { die; }
 
@@ -19,3 +21,29 @@ require_once( GR_BASE_DIR . 'inc/menu.php' );
 require_once( GR_BASE_DIR . 'inc/main.php' );
 require_once( GR_BASE_DIR . 'inc/styles.php' );
 require_once( GR_BASE_DIR . 'inc/errors.php' );
+
+function gr_load_updater() {
+	if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
+		
+		$github = array(
+			'updater'	=> GR_BASE_DIR . 'updater/class-github-updater.php',
+			'api'		=> GR_BASE_DIR . 'updater/class-github-api.php',
+			'plugin'	=> GR_BASE_DIR . 'updater/class-plugin-updater.php'
+		);
+		
+		if( ! class_exists( 'GitHub_Updater' ) && file_exists( $github['updater'] ) ) { 
+			require_once( $github['updater'] );
+		}
+		
+		if( ! class_exists( 'GitHub_Updater_GitHub_API' && file_exists( $github['api'] ) ) {
+			require_once( $github['api'] );
+		}
+		
+		if( ! class_exists( 'GitHub_Plugin_Updater' && file_exists( $github['plugin'] ) ) {
+			require_once( $github['plugin'] );
+		}
+		
+		new GitHub_Plugin_Updater;
+	}
+}
+add_action( 'admin_init', 'gr_load_updater' );
