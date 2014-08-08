@@ -6,7 +6,7 @@ Plugin URI: http://grassroots.org
 Description: A quick way for individuals to contribute to your non-profit organization.
 Author: Garth Mortensen
 Author URI: http://gmortensen-ohwp.com
-GitHub Plugin URI: https://github.com/voldemortenson/grassroots
+GitHub Plugin URI: https://github.com/voldemortensen/grassroots
 GitHub Branch: master
 */
 
