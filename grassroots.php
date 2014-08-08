@@ -36,11 +36,11 @@ function gr_load_updater() {
 			require_once( $github['updater'] );
 		}
 		
-		if( ! class_exists( 'GitHub_Updater_GitHub_API' && file_exists( $github['api'] ) ) {
+		if( ! class_exists( 'GitHub_Updater_GitHub_API' && file_exists( $github['api'] ) ) ) {
 			require_once( $github['api'] );
 		}
 		
-		if( ! class_exists( 'GitHub_Plugin_Updater' && file_exists( $github['plugin'] ) ) {
+		if( ! class_exists( 'GitHub_Plugin_Updater' && file_exists( $github['plugin'] ) ) ) {
 			require_once( $github['plugin'] );
 		}
 		
