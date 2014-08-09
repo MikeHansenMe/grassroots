@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) { die; }
 define( 'GR_BASE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GR_BASE_URL', plugin_dir_url( __FILE__ ) );
 
-
+require_once( GR_BASE_DIR . 'inc/analytics.php' );
 require_once( GR_BASE_DIR . 'inc/button.php' );
 require_once( GR_BASE_DIR . 'inc/menu.php' );
 require_once( GR_BASE_DIR . 'inc/main.php' );
