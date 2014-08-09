@@ -58,6 +58,7 @@ function gr_form_process() {
 }
 
 function gr_form_updated() {
+	gr_log( array( 't' => 'event', 'ec'	=> 'update', 'ea' => 'success', 'el' => 'changes_saved' ) );
 ?>
 	<div id="updated" class="updated">
 		<p>Changes saved.</p>
@@ -65,6 +66,7 @@ function gr_form_updated() {
 <?php
 }
 function gr_form_reset() {
+	gr_log( array( 't' => 'event', 'ec'	=> 'update', 'ea' => 'success', 'el' => 'form_reset' ) );
 ?>
 	<div id="updated" class="updated">
 		<p>Form reset.</p>
