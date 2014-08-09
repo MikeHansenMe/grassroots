@@ -13,7 +13,7 @@ function gr_add_button_form( $atts ) {
 
 	$type = ( $atts == $defaults ) ? 'default' : 'atts';
 	
-	gr_log( array( 't' => 'event', 'ec'	=> 'form', 'ea' => 'display', 'el' => $type ) );
+	gr_log( array( 't' => 'event', 'ec' => 'form', 'ea' => 'display', 'el' => $type ) );
 
 	return '<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 	<input type="hidden" name="cmd" value="_donations">
