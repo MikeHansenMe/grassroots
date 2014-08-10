@@ -99,7 +99,8 @@ $gr_amount = get_option( 'gr_amount', '0' );
 		<input type='hidden' name='gr_reset' value='true' />
 		<input class='gr_btn' type='submit' name='gr_submit' value='Reset Form' />
 		</form>
-		<blockquote>Note: If you specify a donation amount, the amount will be fixed and the donor will not be able to donate a different amount. It is recommended that you leave that area blank so donors can donate what they are able.</blockquote>
+		<blockquote>Note: Leaving the donation amount at "0" will allow contributors to choose their donation amount. Specifying any other amount will only allow contributors to donate the amount specified.</blockquote>
+		<p>To use a donate button, simply put the shortcode [donate] on the page or post you would like the button to appear.</p>
 
 	</div>
 </div>
