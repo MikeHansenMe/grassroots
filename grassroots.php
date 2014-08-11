@@ -22,6 +22,7 @@ require_once( GR_BASE_DIR . 'inc/menu.php' );
 require_once( GR_BASE_DIR . 'inc/main.php' );
 require_once( GR_BASE_DIR . 'inc/styles.php' );
 require_once( GR_BASE_DIR . 'inc/errors.php' );
+require_once( GR_BASE_DIR . 'inc/widget.php' );
 
 function gr_load_updater() {
 	if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
