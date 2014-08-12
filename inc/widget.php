@@ -2,20 +2,23 @@
 
 class gr_donator extends WP_Widget {
 
-	var $defaults = array(
-		'email'		=> get_option( 'gr_email' ),
-		'amount'	=> get_option( 'gr_amount' ),
-		'orgname'	=> get_option( 'gr_orgname' ),
-		'orgid'		=> get_option( 'gr_orgid' )
-	);
-
 	function gr_donator() {
 		parent::WP_Widget( false, $name = "Grassroots Donator" );
 	}
 
 	function widget( $args, $instance ) {
 
-		$atts = wp_parse_args( $instance, $this->defaults );
+		$defaults = array(
+			'email'		=> get_option( 'gr_email' ),
+			'amount'	=> get_option( 'gr_amount' ),
+			'orgname'	=> get_option( 'gr_orgname' ),
+			'orgid'		=> get_option( 'gr_orgid' ),
+			'title'		=> 'Donate',
+			'textarea'	=> ''
+		);
+
+
+		$atts = wp_parse_args( $instance, $defaults );
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
 		$textarea = $instance['textarea'];
@@ -55,6 +58,17 @@ class gr_donator extends WP_Widget {
 
 	function form( $instance ) {
 
+		$defaults = array(
+			'email'		=> get_option( 'gr_email' ),
+			'amount'	=> get_option( 'gr_amount' ),
+			'orgname'	=> get_option( 'gr_orgname' ),
+			'orgid'		=> get_option( 'gr_orgid' ),
+			'title'		=> 'Donate',
+			'textarea'	=> ''
+		);
+		
+		$instance = wp_parse_args( $instance, $defaults );
+		
 		$title = esc_attr( $instance['title'] );
 		$textarea = esc_attr( $instance['textarea'] );
 
