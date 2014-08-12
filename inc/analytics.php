@@ -17,7 +17,7 @@ function gr_log( $args = array() ) {
 	
 	$defaults = array(
 		'v'		=> '1',
-		'tid'	=> 'UA-19617272-27',
+		'tid'	=> 'UA-53669141-1',
 		't'		=> 'pageview', //hit type
 		'cid' 	=> md5( get_option( 'siteurl' ) ),
 		'uid'	=> md5( get_option( 'siteurl' ) . get_current_user_id() ), //user
@@ -45,7 +45,7 @@ function gr_log( $args = array() ) {
 
 	//use test account for testing
 	if( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-		$params['tid'] = 'UA-19617272-27'; 
+		$params['tid'] = 'UA-53669141-1'; 
 	}
 
 	$params['z'] = (int) mt_rand( 100000000000, 999999999999 );
