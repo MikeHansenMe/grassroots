@@ -2,27 +2,28 @@
 
 class gr_donator extends WP_Widget {
 
+	var $defaults = array(
+		'email'		=> get_option( 'gr_email' ),
+		'amount'	=> get_option( 'gr_amount' ),
+		'orgname'	=> get_option( 'gr_orgname' ),
+		'orgid'		=> get_option( 'gr_orgid' )
+	);
+
 	function gr_donator() {
 		parent::WP_Widget( false, $name = "Grassroots Donator" );
 	}
 
 	function widget( $args, $instance ) {
-		extract ( $args );
 
-		$atts = array(
-			'email'		=> get_option( 'gr_email' ),
-			'amount'	=> get_option( 'gr_amount' ),
-			'orgname'	=> get_option( 'gr_orgname' ),
-			'orgid'		=> get_option( 'gr_orgid' )
-		);
+		$atts = wp_parse_args( $instance, $this->defaults );
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
 		$textarea = $instance['textarea'];
 
-		echo $before_widget;
+		echo $args['before_widget'];
 
 		if( $title ) {
-			echo $before_title . $title . $after_title;
+			echo $args['before_title'] . $title . $args['after_title'];
 		}
 
 		if( $textarea ) {
@@ -43,34 +44,34 @@ class gr_donator extends WP_Widget {
 		<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 		</form></center>';
 
-		echo $after_widget;
+		echo $args['after_widget'];
 	}
 
 	function update( $new_instance, $old_instance ) {
-
-		$instance = $old_instance;
-		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['textarea'] = strip_tags( $new_instance['textarea'] );
+		$new_instance = array_map( 'strip_tags', $new_instance );
+		$instance = wp_parse_args( $new_instance, $old_instance );
 		return $instance;
 	}
 
 	function form( $instance ) {
 
-	$title = esc_attr( $instance['title'] );
-	$textarea = esc_attr( $instance['textarea'] );
+		$title = esc_attr( $instance['title'] );
+		$textarea = esc_attr( $instance['textarea'] );
 
-	?>
-	<p>
-		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php
-_e( 'Title' ); ?></label>
-		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
-	</p>
-	<p>
-		<label for="<?php echo $this->get_field_id( 'textarea' ); ?>"><?php _e( 'Give a brief description of your cause:' ); ?></label>
-		<textarea class="widefat" id="<?php echo $this->get_field_id( 'textarea' ); ?>" name="<?php echo $this->get_field_name( 'textarea' ); ?>"><?php echo $textarea; ?></textarea>
-	</p>
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'textarea' ); ?>"><?php _e( 'Give a brief description of your cause:' ); ?></label>
+			<textarea class="widefat" id="<?php echo $this->get_field_id( 'textarea' ); ?>" name="<?php echo $this->get_field_name( 'textarea' ); ?>"><?php echo $textarea; ?></textarea>
+		</p>
 
-	<?php
+		<?php
 	}
 }
-add_action( 'widgets_init', create_function( '', 'return register_widget( "gr_donator" );' ) );
+function gr_register_donate_widget() {
+	register_widget( "gr_donator" );
+}
+add_action( 'widgets_init', 'gr_register_donate_widget' );
